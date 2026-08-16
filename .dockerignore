@@ -1,0 +1,13 @@
+.env
+.venv
+venv
+.git
+.streamlit/secrets.toml
+__pycache__
+*.pyc
+*.log
+.idea
+.vscode
+streamlit_app.py
+gradio_app.py
+_hf_*.py
