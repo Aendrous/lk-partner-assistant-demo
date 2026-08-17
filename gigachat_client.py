@@ -34,6 +34,7 @@ SECRET_KEYS = (
     "GIGACHAT_SCOPE",
     "GIGACHAT_MODEL",
 )
+_SECRETS_LOAD_ERROR = ""
 
 
 def load_env(path: Path | None = None) -> None:
@@ -55,24 +56,77 @@ def load_env(path: Path | None = None) -> None:
         os.environ.setdefault(key.strip(), val.strip().strip("'").strip('"'))
 
 
-def apply_streamlit_secrets() -> None:
-    """Secrets Streamlit Cloud / secrets.toml. На HF Spaces ключи уже в env."""
+def secrets_load_error() -> str:
+    """Краткий текст ошибки чтения st.secrets (без значений ключей)."""
+    return _SECRETS_LOAD_ERROR
+
+
+def _collect_secret_scalars(obj: object, prefix: str = "") -> dict[str, str]:
+    """Плоский словарь строковых секретов: и верхний уровень, и вложенные секции TOML."""
+    out: dict[str, str] = {}
+    if not isinstance(obj, dict):
+        return out
+    for raw_key, val in obj.items():
+        key = str(raw_key).strip()
+        if not key:
+            continue
+        path = f"{prefix}_{key}" if prefix else key
+        if isinstance(val, dict):
+            out.update(_collect_secret_scalars(val, path))
+            out.update(_collect_secret_scalars(val, ""))
+            continue
+        if val is None or isinstance(val, (list, tuple)):
+            continue
+        text = str(val).strip()
+        if not text:
+            continue
+        out[key] = text
+        out[key.upper()] = text
+        out[path] = text
+        out[path.upper()] = text
+    return out
+
+
+def _streamlit_secrets_mapping() -> dict[str, Any] | None:
+    """Материализует st.secrets. None — нет файла / рантайм ещё не готов."""
+    global _SECRETS_LOAD_ERROR
     try:
         import streamlit as st
     except ImportError:
-        return
+        return None
     try:
         secrets = st.secrets
-    except Exception:
+        if hasattr(secrets, "to_dict"):
+            data = secrets.to_dict()
+            mapping = dict(data) if data is not None else {}
+        else:
+            mapping = {k: secrets[k] for k in secrets}
+        _SECRETS_LOAD_ERROR = ""
+        return mapping
+    except FileNotFoundError:
+        _SECRETS_LOAD_ERROR = ""
+        return None
+    except Exception as exc:
+        name = type(exc).__name__
+        if "SecretNotFound" in name or "No secrets" in str(exc):
+            _SECRETS_LOAD_ERROR = ""
+            return None
+        _SECRETS_LOAD_ERROR = f"{name}: {str(exc)[:180]}"
+        return None
+
+
+def apply_streamlit_secrets() -> None:
+    """Копирует Secrets Cloud / secrets.toml в os.environ до вызова GigaChat.
+
+    Community Cloud не кладёт Secrets в env сам по себе — только в st.secrets.
+    .get() при отсутствии файла бросает не KeyError, поэтому читаем mapping целиком.
+    """
+    mapping = _streamlit_secrets_mapping()
+    if not mapping:
         return
+    collected = _collect_secret_scalars(mapping)
     for key in SECRET_KEYS:
-        try:
-            val = secrets.get(key)
-        except Exception:
-            continue
-        if val is None:
-            continue
-        text = str(val).strip()
+        text = (collected.get(key) or collected.get(key.upper()) or "").strip()
         if text:
             os.environ[key] = text
 
@@ -83,6 +137,7 @@ def load_runtime_secrets() -> None:
 
 
 def authorization_basic() -> str:
+    load_runtime_secrets()
     key = (
         os.environ.get("GIGACHAT_AUTHORIZATION_KEY")
         or os.environ.get("GIGACHAT_AUTH_KEY")
@@ -106,6 +161,7 @@ def has_credentials() -> bool:
 
 class GigaChatClient:
     def __init__(self) -> None:
+        load_runtime_secrets()
         self._token = ""
         self._expires_at = 0.0
         self.model = os.environ.get("GIGACHAT_MODEL", DEFAULT_MODEL).strip() or DEFAULT_MODEL
@@ -126,7 +182,10 @@ class GigaChatClient:
             return self._token
         basic = authorization_basic()
         if not basic:
-            raise RuntimeError("Нет GIGACHAT_AUTHORIZATION_KEY (и нет пары CLIENT_ID/SECRET) в .env")
+            raise RuntimeError(
+                "Нет GIGACHAT_AUTHORIZATION_KEY (и нет пары CLIENT_ID/SECRET). "
+                "Локально: .env. На Streamlit Cloud: ⋮ → Settings → Secrets → Save → Reboot."
+            )
         resp = self._session.post(
             OAUTH_URL,
             data={"scope": self.scope},

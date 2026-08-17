@@ -7,10 +7,13 @@ from __future__ import annotations
 
 import streamlit as st
 
-from gigachat_client import GigaChatClient, has_credentials, load_runtime_secrets
+from gigachat_client import (
+    GigaChatClient,
+    has_credentials,
+    load_runtime_secrets,
+    secrets_load_error,
+)
 from rag import system_prompt
-
-load_runtime_secrets()
 
 st.set_page_config(
     page_title="Помощник партнёра ЛК (демо)",
@@ -18,6 +21,8 @@ st.set_page_config(
     layout="centered",
     initial_sidebar_state="collapsed",
 )
+
+load_runtime_secrets()
 
 EXAMPLES = (
     "Как создать заказ в ЛК?",
@@ -46,9 +51,23 @@ with st.expander("Ссылки и что это за чат"):
 
 if not has_credentials():
     st.error(
-        "Нет ключа GigaChat. Локально: скопируйте `.env.example` → `.env`. "
-        "На хостинге: Secrets → `GIGACHAT_AUTHORIZATION_KEY` (и scope PERS)."
+        "GigaChat недоступен: нет ключа API. "
+        "На Streamlit Cloud откройте это приложение → меню **⋮** → **Settings** → **Secrets**, "
+        "вставьте TOML ниже, нажмите **Save**, затем **Reboot**."
     )
+    st.code(
+        'GIGACHAT_AUTHORIZATION_KEY = "ваш_ключ"\n'
+        'GIGACHAT_SCOPE = "GIGACHAT_API_PERS"\n'
+        'GIGACHAT_MODEL = "GigaChat-3-Ultra"',
+        language="toml",
+    )
+    st.caption(
+        "Локально: скопируйте `.env.example` → `.env`. Ключ в git не класть. "
+        "Значение ключа — в кавычках (Base64 часто заканчивается на `=`)."
+    )
+    hint = secrets_load_error()
+    if hint:
+        st.warning(f"Secrets не прочитались ({hint}). Проверьте, что это TOML, не `.env`-формат.")
     st.stop()
 
 if "messages" not in st.session_state:
