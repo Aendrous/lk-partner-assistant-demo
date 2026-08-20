@@ -169,6 +169,9 @@ def _chip_select(label: str, options: list[str], key: str):
         if cols[index % len(cols)].button(item, key=f"{key}_{index}"):
             return item
     return None
+
+
+def _render_card(card: dict) -> None:
     with st.container(border=True):
         st.markdown("**Карточка из ЛК**")
         st.markdown(f"`{card.get('art') or '—'}`")
