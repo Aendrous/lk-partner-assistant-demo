@@ -1,0 +1,13 @@
+{
+  "qa_count": 7,
+  "pages_fetched": 7,
+  "corpus": "knowledge/1c/corpus.md",
+  "qa": "knowledge/1c/qa.md",
+  "hd_service_id": 69,
+  "hd_parent_service_id": 14,
+  "webkb": {
+    "action": "created",
+    "page_id": "124642085",
+    "url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=124642085"
+  }
+}

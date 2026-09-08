@@ -1,0 +1,103 @@
+{
+  "_comment": "Куда публиковать быстрые ответы, выученные чатботом IntraService из закрытых заявок",
+  "space": "WEBKB",
+  "parent_technical_web": "76026317",
+  "chatbot_root_page_id": "124630073",
+  "chatbot_root_title": "Чатбот ИИЭК: схема 1 линии и заявка в HelpDesk",
+  "ai_kb_root": {
+    "title": "Чатбот IntraService: база быстрых ответов (AI-KB)",
+    "parent_page_id": "124630073",
+    "page_id": null,
+    "note": "Создать вручную или scripts/publish_kb_draft_confluence.py --init-root. Дочерние блоки — черновики после ревью."
+  },
+  "ai_kb_review": {
+    "title": "Чатбот IntraService: статьи самообучения (ревью)",
+    "parent_page_id": "124630073",
+    "page_id": "124640307",
+    "note": "Обычные страницы WEBKB с меткой ai-kb-draft. Заголовки без [ЧЕРНОВИК]. Promote → ai-kb-published + append в Быстрые ответы."
+  },
+  "targets_by_contour": {
+    "bp": {
+      "page_id": "124629661",
+      "title": "Быстрые ответы WEB: Бизнес-платформа",
+      "mode": "append_section",
+      "code_prefix": "BP"
+    },
+    "lk": {
+      "page_id": "124630014",
+      "title": "Быстрые ответы WEB: Личный кабинет партнёра (ЛК)",
+      "fallback_page_id": "124629493",
+      "mode": "append_section",
+      "code_prefix": "LK"
+    },
+    "other": {
+      "page_id": null,
+      "parent_page_id": "124630073",
+      "title": "Чатбот IntraService: прочие быстрые ответы",
+      "mode": "child_or_append",
+      "code_prefix": "HD"
+    },
+    "crm": {
+      "page_id": "124642256",
+      "target_space": "CRMRF",
+      "parent_page_id": "786565",
+      "hub_page_id": "124642254",
+      "hub_url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=124642254",
+      "guide_page_id": "124642255",
+      "title": "Быстрые ответы: CRM РФ (чатбот)",
+      "mode": "append_section",
+      "code_prefix": "CRM",
+      "qa_webkb_page_id": "124642008",
+      "qa_webkb_title": "Чатбот IntraService: база Q&A CRM (самообучение)",
+      "qa_webkb_url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=124642008",
+      "note": "Promote → CRMRF pageId 124642256; publish: python scripts/publish_crm_l1_confluence.py"
+    },
+    "edi": {
+      "page_id": "124642091",
+      "target_space": "1C",
+      "parent_page_id": "124642089",
+      "hub_page_id": "124642089",
+      "hub_url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=124642089",
+      "guide_page_id": "124642090",
+      "guide_url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=124642090",
+      "qa_l1_page_id": "124642092",
+      "qa_l1_url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=124642092",
+      "qa_webkb_page_id": "124642085",
+      "qa_webkb_note": "устарело — основная база в пространстве 1C",
+      "mode": "append_section",
+      "code_prefix": "1C",
+      "title": "Быстрые ответы: 1С Солярис (чатбот)",
+      "qa_logistics_tn_page_id": "124642131",
+      "qa_logistics_tn_url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=124642131",
+      "qa_logistics_tn_title": "Быстрые ответы: 1С · Выгрузка ТН (ОП-2765)",
+      "note": "Солярис: publish_1c_l1_confluence.py → 124642091; ТН ОП-2765: publish_1c_logistics_tn_confluence.py → 124642131"
+    }
+  },
+  "existing_sources_in_corpus": [
+    {
+      "page_id": "124629661",
+      "contour": "bp"
+    },
+    {
+      "page_id": "124629493",
+      "contour": "bp"
+    },
+    {
+      "page_id": "6096003",
+      "contour": "bp"
+    },
+    {
+      "page_id": "124642091",
+      "contour": "edi"
+    },
+    {
+      "page_id": "124642131",
+      "contour": "edi",
+      "profile": "onec_logistics_tn"
+    },
+    {
+      "page_id": "124642092",
+      "contour": "edi"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+name: Main Config
+version: 1.0.0
+schema: v1
+
+models:
+  - name: IEK GPT-OSS 120B
+    provider: openai
+    model: iek/gpt-oss-120b
+    apiBase: https://llm.iek.local/v1
+    apiKey: sk-DEAQ5ruqqoGZQzuFyZ3ymw
+    roles:
+      - chat
+      - edit
+      - apply
+
+tabAutocompleteModel:
+  name: IEK GPT-OSS 120B
+  provider: openai
+  model: iek/gpt-oss-120b
+  apiBase: https://llm.iek.local/v1
+  apiKey: sk-DEAQ5ruqqoGZQzuFyZ3ymw
+
+embeddingProvider:
+  provider: openai
+  model: iek/e5-large
+  apiBase: https://llm.iek.local/v1
+  apiKey: sk-DEAQ5ruqqoGZQzuFyZ3ymw

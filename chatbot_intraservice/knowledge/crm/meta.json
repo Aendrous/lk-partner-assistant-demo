@@ -1,0 +1,19 @@
+{
+  "qa_count": 38,
+  "pages_fetched": 9,
+  "support_pages_fetched": 24,
+  "user_request_pages_fetched": 10,
+  "support_parent_id": "6095240",
+  "support_url": "https://confluence.dev.iek.ru/x/iAFd",
+  "user_requests_parent_id": "32311805",
+  "user_requests_url": "https://confluence.dev.iek.ru/x/-QntAQ",
+  "corpus": "knowledge/crm/corpus.md",
+  "qa": "knowledge/crm/qa.md",
+  "crmrf_kb": "https://confluence.dev.iek.ru/x/hQAM",
+  "crm_dev": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=786562",
+  "webkb": {
+    "action": "updated",
+    "page_id": "124642008",
+    "url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=124642008"
+  }
+}

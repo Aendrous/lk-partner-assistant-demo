@@ -1,0 +1,20 @@
+{
+  "space": "1C",
+  "l1_root_page_id": "39887131",
+  "l1_root_url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=39887131",
+  "hub_page_id": "124642089",
+  "hub_title": "Чатбот IntraService · 1С Солярис",
+  "hub_url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=124642089",
+  "guide_page_id": "124642090",
+  "guide_url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=124642090",
+  "qa_solaris_page_id": "124642091",
+  "qa_solaris_url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=124642091",
+  "qa_solaris_title": "Быстрые ответы: 1С Солярис (чатбот)",
+  "qa_l1_page_id": "124642092",
+  "qa_l1_url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=124642092",
+  "promote_target_page_id": "124642091",
+  "note": "Promote AI-KB (контур edi) → qa_solaris_page_id",
+  "qa_logistics_tn_page_id": "124642131",
+  "qa_logistics_tn_url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=124642131",
+  "qa_logistics_tn_title": "Быстрые ответы: 1С · Выгрузка ТН (ОП-2765)"
+}

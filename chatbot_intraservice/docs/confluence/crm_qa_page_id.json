@@ -1,0 +1,17 @@
+{
+  "page_id": "124642008",
+  "title": "Чатбот IntraService: база Q&A CRM (самообучение)",
+  "parent_page_id": "124630073",
+  "space": "WEBKB",
+  "url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=124642008",
+  "note": "Временно в WEBKB; после согласования — перенос в CRMRF. Сборка: python scripts/build_crm_corpus.py --publish",
+  "sources": {
+    "crmrf_kb": "https://confluence.dev.iek.ru/x/hQAM",
+    "crm_dev_root": "786562"
+  },
+  "crmrf_hub_page_id": "124642254",
+  "crmrf_qa_page_id": "124642256",
+  "crmrf_qa_url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=124642256",
+  "promote_target_page_id": "124642256",
+  "promote_target_space": "CRMRF"
+}

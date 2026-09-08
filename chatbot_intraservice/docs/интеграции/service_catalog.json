@@ -1,0 +1,146 @@
+{
+  "_comment": "ServiceId через GET /api/service?for=createtask. Статусы — GET /api/taskstatus. L0 создаёт заявку на листовой сервис, не на папку 712.",
+  "api_base": "https://helpdesk.iek.local/api",
+  "task_view_url_template": "https://helpdesk.iek.local/Task/View/{Id}",
+  "statuses": {
+    "_note": "В справочнике IEK нет «В работе»; для взятия в работу используем «В процессе» (27).",
+    "open": 31,
+    "in_progress": 27,
+    "transferred": 38,
+    "awaiting_reply": 46,
+    "awaiting_reply_autoclose": 120,
+    "done": 29,
+    "closed": 28,
+    "l1": 121
+  },
+  "task_types": {
+    "_note": "GET /api/tasktype. ITIL для WEB: инцидент / запрос / изменение.",
+    "incident": 1008,
+    "request": 1009,
+    "change": 1010
+  },
+  "priorities": {
+    "_note": "GET /api/taskpriority",
+    "standard": 11,
+    "elevated": 9,
+    "high": 10,
+    "critical": 12
+  },
+  "web_tree": {
+    "_note": "Как на selectservice: IT → WEB - сервисы и сайты (712)",
+    "parent_web": 712,
+    "leaves": {
+      "kp": 715,
+      "lk_incident": 731,
+      "lk": 732,
+      "bp": 833,
+      "logistics": 714,
+      "expeditors": 850,
+      "quart": 716,
+      "iprice": 740
+    }
+  },
+  "services": {
+    "kp": {
+      "name": "Корпоративный портал (corp.iek.ru)",
+      "ServiceId": 715,
+      "ServiceId_parent": 712,
+      "TypeId": null,
+      "PriorityId_default": null,
+      "StatusId_open": 31
+    },
+    "lk": {
+      "name": "Личный кабинет партнёра — Запрос на обслуживание",
+      "ServiceId": 732,
+      "ServiceId_parent": 713,
+      "TypeId": 1009,
+      "PriorityId_default": 11,
+      "StatusId_open": 31
+    },
+    "lk_incident": {
+      "name": "Личный кабинет партнёра — Инцидент",
+      "ServiceId": 731,
+      "ServiceId_parent": 713,
+      "TypeId": 1008,
+      "PriorityId_default": 10,
+      "StatusId_open": 31
+    },
+    "bp": {
+      "name": "Бизнес-платформа ЦКГ — Запрос на обслуживание",
+      "ServiceId": 833,
+      "ServiceId_parent": 827,
+      "TypeId": 1009,
+      "PriorityId_default": 11,
+      "StatusId_open": 31
+    },
+    "logistics": {
+      "name": "Портал перевозчиков (logistic.iek.ru)",
+      "ServiceId": 714,
+      "ServiceId_parent": 712,
+      "TypeId": null,
+      "PriorityId_default": null,
+      "StatusId_open": 31
+    },
+    "expeditors": {
+      "name": "Портал экспедиторов",
+      "ServiceId": 850,
+      "ServiceId_parent": 712,
+      "TypeId": null,
+      "PriorityId_default": null,
+      "StatusId_open": 31
+    },
+    "quart": {
+      "name": "QUART (ТКП, база испытаний)",
+      "ServiceId": 716,
+      "ServiceId_parent": 712,
+      "TypeId": null,
+      "PriorityId_default": null,
+      "StatusId_open": 31
+    },
+    "iprice": {
+      "name": "iPrice",
+      "ServiceId": 740,
+      "ServiceId_parent": 712,
+      "TypeId": null,
+      "PriorityId_default": null,
+      "StatusId_open": 31
+    },
+    "vpn": {
+      "name": "VPN / доступ к сети",
+      "ServiceId": null,
+      "TypeId": null,
+      "PriorityId_default": null,
+      "StatusId_open": 31
+    },
+    "mail": {
+      "name": "Корпоративная почта",
+      "ServiceId": null,
+      "TypeId": null,
+      "PriorityId_default": null,
+      "StatusId_open": 31
+    },
+    "other": {
+      "name": "Прочее IT / WEB",
+      "ServiceId": null,
+      "TypeId": null,
+      "PriorityId_default": null,
+      "StatusId_open": 31
+    },
+    "solaris": {
+      "name": "1С Солярис",
+      "ServiceId": 69,
+      "ServiceId_parent": 14,
+      "TypeId": null,
+      "PriorityId_default": null,
+      "StatusId_open": 31
+    },
+    "edi": {
+      "name": "EDI / электронный обмен (1С)",
+      "ServiceId": 69,
+      "ServiceId_parent": 14,
+      "TypeId": null,
+      "PriorityId_default": null,
+      "StatusId_open": 31
+    }
+  }
+}

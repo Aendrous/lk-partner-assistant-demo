@@ -1,0 +1,17 @@
+{
+  "space": "CRMRF",
+  "crmrf_kb_root_page_id": "786565",
+  "crmrf_kb_root_url": "https://confluence.dev.iek.ru/x/hQAM",
+  "crm_dev_root_page_id": "786562",
+  "crm_dev_root_url": "https://confluence.dev.iek.ru/x/ggAM",
+  "hub_page_id": "124642254",
+  "hub_title": "Чатбот IntraService · CRM РФ",
+  "hub_url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=124642254",
+  "guide_page_id": "124642255",
+  "guide_url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=124642255",
+  "qa_page_id": "124642256",
+  "qa_url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=124642256",
+  "qa_title": "Быстрые ответы: CRM РФ (чатбот)",
+  "promote_target_page_id": "124642256",
+  "note": "Promote AI-KB (контур crm) → qa_page_id в CRMRF"
+}

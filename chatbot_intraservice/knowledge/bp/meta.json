@@ -1,0 +1,22 @@
+{
+  "pages": [
+    {
+      "id": "124629661",
+      "title": "Быстрые ответы WEB: Бизнес-платформа (bp.iek.ru)",
+      "url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=124629661"
+    },
+    {
+      "id": "124629493",
+      "title": "Шаблоны ответов WEB: ЛК, уведомления, email и API бизнес-платформы",
+      "url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=124629493"
+    },
+    {
+      "id": "6096003",
+      "title": "Заявка на регистрацию-защиту",
+      "url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=6096003"
+    }
+  ],
+  "closed_tasks": 50,
+  "corpus": "knowledge\\bp\\corpus.md",
+  "adm_check_template": "https://adm.bp.iek.ru/main?search={email}&page=1&pageSize=16"
+}

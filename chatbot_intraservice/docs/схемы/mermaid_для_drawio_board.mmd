@@ -1,0 +1,23 @@
+flowchart TD
+  Start([Пользователь открыл чат]) --> Ask[Вопрос]
+  Ask --> Search{Есть ответ в KB?}
+  Search -->|Да| Answer[Ответ + ссылки]
+  Answer --> Feedback{Помогло?}
+  Feedback -->|Да| EndOk([Решено])
+  Feedback -->|Нет| Route
+  Search -->|Нет| Route{URL/контур ясен?}
+  Route -->|ЛК/API без URL| LkBp[lk.iek.ru или bp.iek.ru?]
+  Route -->|Иное| Which[Какой сервис?]
+  Route -->|Да| Cat
+  LkBp --> Cat
+  Which --> Cat
+  Cat[Категория проблемы]
+  Cat --> Cycle[Цикл уточнений шаг 1..N]
+  Cycle --> Enough{Поля хватает?}
+  Enough -->|Нет| Cycle
+  Enough -->|Да| Draft[Черновик заявки ServiceKey]
+  Draft --> Confirm{Создать?}
+  Confirm -->|Да| ApiPost[POST api/task IntraService]
+  ApiPost --> EndTicket([Заявка HelpDesk])
+  Ask --> TicketBtn[Создать заявку из чата]
+  TicketBtn --> Route

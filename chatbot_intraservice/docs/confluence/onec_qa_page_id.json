@@ -1,0 +1,7 @@
+{
+  "page_id": "124642085",
+  "title": "Чатбот IntraService: база Q&A 1С Солярис",
+  "parent_page_id": "124630073",
+  "url": "https://confluence.dev.iek.ru/pages/viewpage.action?pageId=124642085",
+  "note": "Сборка: python scripts/build_1c_corpus.py --publish"
+}
