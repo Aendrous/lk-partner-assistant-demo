@@ -2,7 +2,7 @@
 #
 # Установка (Linux, от root):
 #   sudo cp scripts/deploy/iek-intraservice-n8n-api.service /etc/systemd/system/
-#   sudo sed -i 's|/opt/iek-chatbot-intraservice|/actual/path|g' /etc/systemd/system/iek-intraservice-n8n-api.service
+#   sudo sed -i 's|/opt/iek-assistant|/actual/path|g' /etc/systemd/system/iek-intraservice-n8n-api.service
 #   sudo systemctl daemon-reload
 #   sudo systemctl enable --now iek-intraservice-n8n-api
 #   curl -s http://127.0.0.1:8765/health
@@ -19,9 +19,9 @@ Wants=network-online.target
 Type=simple
 User=iekbot
 Group=iekbot
-WorkingDirectory=/opt/iek-chatbot-intraservice
-EnvironmentFile=/opt/iek-chatbot-intraservice/.env
-ExecStart=/opt/iek-chatbot-intraservice/.venv/bin/python scripts/n8n_http_server.py --host 0.0.0.0 --port 8765
+WorkingDirectory=/opt/iek-assistant/chatbot_intraservice
+EnvironmentFile=/opt/iek-assistant/chatbot_intraservice/.env
+ExecStart=/opt/iek-assistant/.venv/bin/python scripts/n8n_http_server.py --host 0.0.0.0 --port 8765
 Restart=on-failure
 RestartSec=10
 

@@ -1,0 +1,17 @@
+[Unit]
+Description=IEK Employee Assistant L0 Streamlit UI
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=iekbot
+Group=iekbot
+WorkingDirectory=/opt/iek-assistant
+EnvironmentFile=/opt/iek-assistant/chatbot_intraservice/.env
+ExecStart=/opt/iek-assistant/.venv/bin/python -m streamlit run app_iek_chat.py --server.address 127.0.0.1 --server.port 7860 --server.headless true --server.baseUrlPath l0
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

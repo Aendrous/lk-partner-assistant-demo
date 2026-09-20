@@ -1,4 +1,34 @@
-# Деплой HTTP API для n8n (co-located)
+# Деплой на Ubuntu: L0, L1 и HTTP API для n8n
+
+## Безопасный первый запуск UI
+
+Streamlit не содержит аутентификации. На первом этапе сервисы L0 (`7860`) и
+L1 (`8502`) слушают только `127.0.0.1` на VM. Откройте их с рабочей станции
+через SSH-туннель:
+
+```powershell
+ssh -N -L 7860:127.0.0.1:7860 -L 8502:127.0.0.1:8502 chatbot.iek.local
+```
+
+После этого доступны `http://localhost:7860` (L0) и
+`http://localhost:8502` (L1). Не меняйте привязку на `0.0.0.0` до настройки
+HTTPS reverse proxy и ограничения доступа по корпоративной сети.
+
+Установите UI-службы:
+
+```bash
+sudo cp scripts/deploy/iek-l0-ui.service /etc/systemd/system/
+sudo cp scripts/deploy/iek-l1-ui.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now iek-l0-ui iek-l1-ui
+```
+
+Проверка на VM:
+
+```bash
+curl -I http://127.0.0.1:7860
+curl -I http://127.0.0.1:8502
+```
 
 Цель: на сервере `n8n.iek.local` поднять `n8n_http_server` на порту **8765**, чтобы workflow **IntraService HelpDesk Bot** вызывал `POST /run/watch-*` по `http://127.0.0.1:8765`.
 

@@ -1,4 +1,7 @@
 .env
+chatbot_intraservice/.env
+chatbot_intraservice/_analysis_*.json
+chatbot_intraservice/_task_*.json
 .venv/
 venv/
 __pycache__/
@@ -9,3 +12,20 @@ __pycache__/
 *.log
 *.pem
 _hf_*.py
+
+# Android (ключ GigaChat, как llm_runtime в ClubOfSisters — не в git)
+android/.gradle/
+android/.idea/
+android/local.properties
+android/build/
+android/app/build/
+android/app/src/main/assets/llm_runtime.txt
+android/*.iml
+android/secrets/
+*.jks
+*.keystore
+*.p12
+**/key.properties
+android/keystore/*.jks
+android/keystore/*.p12
+android/keystore/key.properties
